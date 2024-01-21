@@ -1,0 +1,29 @@
+spring:
+  threads:
+    virtual:
+      enabled: true
+  application:
+    name: java21-spring32-starter
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:javadevjournal
+    username: sa
+    password: password
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+
+  observations:
+    key-values:
+      application: ${spring.application.name}
+      version: @project.version@
